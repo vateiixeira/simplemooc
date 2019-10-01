@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="pure-g-r content-ribbon">
+    <div class="pure-u-1">
+        {% if sucess %}
+        <p>{{ result }}</p>
+        {% else %}
+        <h2>Busque data e hora!</h2>
+        <form class="pure-form pure-form-stacked" method="get">
+            {% csrf_token %}
+            <fieldset>
+                {{ form.non_field_errors }}
+
+                {% for field in form %}
+                <div class="pure-control-group">
+                    {{ field.label_tag }}
+                    {{ field }}
+                    {{ field.errors }}
+                </div>
+                {% endfor %}
+
+                <div class="pure-controls">
+                    <button type="submit" class="pure-button pure-button-primary">Enviar</button>
+                </div>
+            </fieldset>
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
